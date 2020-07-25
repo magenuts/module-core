@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!--HELP-->
+    <preference for="Magenuts\Core\Api\Service\ManualServiceInterface" type="Magenuts\Core\Service\ManualService"/>
+
+    <!--INTERFACES-->
+    <preference for="Magenuts\Core\Api\UrlRewriteHelperInterface" type="Magenuts\Core\Helper\UrlRewrite" />
+    <preference for="Magenuts\Core\Api\ImageHelperInterface" type="Magenuts\Core\Helper\Image" />
+    <preference for="Magenuts\Core\Api\CronHelperInterface" type="Magenuts\Core\Helper\Cron" />
+    <preference for="Magenuts\Core\Api\TextHelperInterface" type="Magenuts\Core\Helper\Text" />
+    <preference for="Magenuts\Core\Api\ParseVariablesHelperInterface" type="Magenuts\Core\Helper\ParseVariables" />
+
+    <!--SERVICES-->
+    <preference for="Magenuts\Core\Api\Service\ValidationServiceInterface" type="Magenuts\Core\Service\ValidationService" />
+    <preference for="Magenuts\Core\Api\Service\CronServiceInterface" type="Magenuts\Core\Service\CronService" />
+
+    <type name="Magento\Framework\App\FrontController">
+        <plugin name="mstCoreDispatch" type="Magenuts\Core\Plugin\UrlRewritePlugin" sortOrder="1000"/>
+    </type>
+
+    <type name="Magenuts\Core\Api\Service\ValidationServiceInterface">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="core" xsi:type="object">Magenuts\Core\Service\GeneralValidationService</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- CLI Commands -->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="mstCoreValidation" xsi:type="object">Magenuts\Core\Console\Command\ValidationCommand</item>
+                <item name="mstCoreInternalization" xsi:type="object">Magenuts\Core\Console\Command\I18nFrontCollectPhrasesCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,8 @@
+<?php
+/* @var $block \Magenuts\Core\Block\CustomCss*/
+
+$css = $block->getCustomCss();
+?>
+<?php if ($css): ?>
+    <style><?= $css; ?></style>
+<?php endif; ?>

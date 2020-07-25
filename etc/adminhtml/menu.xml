@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magenuts_Core::menu" title="Magenuts" module="Magenuts_Core" sortOrder="70" resource="Magenuts_Core::menu"/>
+        <add id="Magenuts_Core::extensions" title="Extensions" module="Magenuts_Core" sortOrder="1000" action="adminhtml/system_config/edit/section/mst_core" parent="Magenuts_Core::menu" resource="Magenuts_Core::core_settings"/>
+        <add id="Magenuts_Core::marketplace" title="Magenuts Marketplace" module="Magenuts_Core" sortOrder="1010" action="mstcore/marketplace" parent="Magenuts_Core::menu" resource="Magenuts_Core::menu"/>
+    </menu>
+</config>
